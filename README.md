@@ -1,4 +1,4 @@
-# 🧪 API Testing - Platzi Fake Store API (Postman Project)
+# 🧪 API Testing - Platzi Fake Store API
 
 This project showcases an **API Testing and Automation workflow** using **Postman** to test the **Platzi Fake Store API**.
 
