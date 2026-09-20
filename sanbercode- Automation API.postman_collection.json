@@ -1,0 +1,462 @@
+{
+  "info": {
+    "_postman_id": "f4bb756a-4c6b-40fc-8a72-75dcacd24ff8",
+    "name": "sanbercode- Automation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57819470",
+    "_collection_link": "https://go.postman.co/collection/57819470-f4bb756a-4c6b-40fc-8a72-75dcacd24ff8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get All Categories",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 1000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(1000);\r\n});\r\n\r\npm.test(\"Response body contains Electronics\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Electronics\");\r\n});\r\n\r\npm.test(\"Response is JSON\", function () {\r\n    pm.response.to.be.json;\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_urlPlatzi}}/categories",
+          "host": [
+            "{{base_urlPlatzi}}"
+          ],
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post Categories",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Response time is below 2000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Response body contains Sendal Kulit\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Sendal Kulit\");\r\n});\r\n\r\n// Additional assertion\r\npm.test(\"Response has ID\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response).to.have.property(\"id\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Sendal Kulit\",\r\n    \"image\": \"https://placehold.co/600x400\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_urlPlatzi}}/categories",
+          "host": [
+            "{{base_urlPlatzi}}"
+          ],
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Categories by ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 2000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Response body contains updated name\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"nics\");\r\n});\r\n\r\n\r\npm.test(\"Updated category ID is correct\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response.id).to.eql(199);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"nics\",\r\n    \"image\": \"https://placehold.co/600x400\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_urlPlatzi}}/categories/199",
+          "host": [
+            "{{base_urlPlatzi}}"
+          ],
+          "path": [
+            "categories",
+            "199"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Category by ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 1000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(1000);\r\n});\r\n\r\npm.test(\"Response body contains nics\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"nics\");\r\n});\r\n\r\npm.test(\"Category ID is correct\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response.id).to.eql(199);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_urlPlatzi}}/categories/199",
+          "host": [
+            "{{base_urlPlatzi}}"
+          ],
+          "path": [
+            "categories",
+            "199"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Category by Slug",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 1000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(1000);\r\n});\r\n\r\npm.test(\"Response body is not empty\", function () {\r\n    pm.expect(pm.response.text()).to.not.be.empty;\r\n});\r\n\r\n\r\npm.test(\"Response has slug\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response).to.have.property(\"slug\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.escuelajs.co/api/v1/categories/slug/electronics",
+          "protocol": "https",
+          "host": [
+            "api",
+            "escuelajs",
+            "co"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "categories",
+            "slug",
+            "electronics"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 1000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(1000);\r\n});\r\n\r\npm.test(\"Response body is not empty\", function () {\r\n    pm.expect(pm.response.text()).to.not.be.empty;\r\n});\r\n\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.escuelajs.co/api/v1/users",
+          "protocol": "https",
+          "host": [
+            "api",
+            "escuelajs",
+            "co"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Response time is below 2000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Response body contains Mas Robi\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Mas Robi\");\r\n});\r\n\r\n\r\npm.test(\"Created user has ID\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response).to.have.property(\"id\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Mas Robi\",\r\n    \"email\": \"masrobi@example.com\",\r\n    \"password\": \"Password123\",\r\n    \"avatar\": \"https://example.com/masrobi.png\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.escuelajs.co/api/v1/users",
+          "protocol": "https",
+          "host": [
+            "api",
+            "escuelajs",
+            "co"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Users by ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 1000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(1000);\r\n});\r\n\r\npm.test(\"Response body contains updated name\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Mas Robi Updated\");\r\n});\r\n\r\n\r\npm.test(\"Updated user ID is correct\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response.id).to.eql(234);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Mas Robi Updated\",\r\n    \"email\": \"masrobi@example.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.escuelajs.co/api/v1/users/234",
+          "protocol": "https",
+          "host": [
+            "api",
+            "escuelajs",
+            "co"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users",
+            "234"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Product",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Response time is below 2000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Response body contains product title\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Mas Sandi New Produ\");\r\n});\r\n\r\n\r\npm.test(\"Created product has ID\", function () {\r\n    const response = pm.response.json();\r\n    pm.expect(response).to.have.property(\"id\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Mas Sandi New Produ\",\r\n    \"price\": 100,\r\n    \"description\": \"Product by Mas Sandi\",\r\n    \"categoryId\": 1,\r\n    \"images\": [\r\n        \"https://placehold.co/600x400\"\r\n    ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.escuelajs.co/api/v1/products",
+          "protocol": "https",
+          "host": [
+            "api",
+            "escuelajs",
+            "co"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all products",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 2000 ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Response body is string\", function () {\r\n    pm.expect(pm.response.text()).to.be.a(\"string\");\r\n});\r\n\r\npm.test(\"Response body contains title\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"title\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.escuelajs.co/api/v1/products",
+          "protocol": "https",
+          "host": [
+            "api",
+            "escuelajs",
+            "co"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get prodcts by ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 2000 ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Response body is string\", function () {\r\n    pm.expect(pm.response.text()).to.be.a(\"string\");\r\n});\r\n\r\npm.test(\"Response body contains id\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"id\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.escuelajs.co/api/v1/products/38",
+          "protocol": "https",
+          "host": [
+            "api",
+            "escuelajs",
+            "co"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "products",
+            "38"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Locations",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 2000 ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Response body is string\", function () {\r\n    pm.expect(pm.response.text()).to.be.a(\"string\");\r\n});\r\n\r\npm.test(\"Response body contains id\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"id\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_urlPlatzi}}/locations",
+          "host": [
+            "{{base_urlPlatzi}}"
+          ],
+          "path": [
+            "locations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get users by ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is below 2000 ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Response body is string\", function () {\r\n    pm.expect(pm.response.text()).to.be.a(\"string\");\r\n});\r\n\r\npm.test(\"Response body contains id\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"id\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_urlPlatzi}}/users/1",
+          "host": [
+            "{{base_urlPlatzi}}"
+          ],
+          "path": [
+            "users",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
